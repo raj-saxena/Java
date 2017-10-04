@@ -1,14 +1,16 @@
 package io.pivotal.literx.repository;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import io.pivotal.literx.domain.User;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+import static io.pivotal.literx.domain.User.*;
+import static java.util.Arrays.asList;
 
 public class ReactiveUserRepository implements ReactiveRepository<User> {
 
@@ -25,7 +27,7 @@ public class ReactiveUserRepository implements ReactiveRepository<User> {
 
 	public ReactiveUserRepository(long delayInMs) {
 		this.delayInMs = delayInMs;
-		users = new ArrayList<>(Arrays.asList(User.SKYLER, User.JESSE, User.WALTER, User.SAUL));
+		users = new ArrayList<>(asList(SKYLER, JESSE, WALTER, SAUL));
 	}
 
 	public ReactiveUserRepository(User... users) {
@@ -34,13 +36,13 @@ public class ReactiveUserRepository implements ReactiveRepository<User> {
 
 	public ReactiveUserRepository(long delayInMs, User... users) {
 		this.delayInMs = delayInMs;
-		this.users = new ArrayList<>(Arrays.asList(users));
+		this.users = new ArrayList<>(asList(users));
 	}
 
 
 	@Override
 	public Mono<Void> save(Publisher<User> userPublisher) {
-		return withDelay(Flux.from(userPublisher)).doOnNext(u -> users.add(u)).then();
+		return withDelay(Flux.from(userPublisher)).doOnNext(users::add).then();
 	}
 
 	@Override
