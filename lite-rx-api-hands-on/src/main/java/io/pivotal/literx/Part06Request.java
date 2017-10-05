@@ -6,41 +6,50 @@ import io.pivotal.literx.repository.ReactiveUserRepository;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
+import static io.pivotal.literx.domain.User.JESSE;
+import static io.pivotal.literx.domain.User.SKYLER;
+import static reactor.test.StepVerifier.create;
+
 /**
  * Learn how to control the demand.
  *
  * @author Sebastien Deleuze
  */
-public class Part06Request {
+class Part06Request {
 
 	ReactiveRepository<User> repository = new ReactiveUserRepository();
 
 //========================================================================================
 
-	// TODO Create a StepVerifier that initially requests all values and expect 4 values to be received
+	// Create a StepVerifier that initially requests all values and expect 4 values to be received
 	StepVerifier requestAllExpectFour(Flux<User> flux) {
-		return null;
+		return create(flux).thenRequest(Long.MAX_VALUE).expectNextCount(4).expectComplete();
 	}
 
 //========================================================================================
 
-	// TODO Create a StepVerifier that initially requests 1 value and expects User.SKYLER then requests another value and expects User.JESSE.
+	// Create a StepVerifier that initially requests 1 value and expects User.SKYLER then requests another value and expects User.JESSE.
 	StepVerifier requestOneExpectSkylerThenRequestOneExpectJesse(Flux<User> flux) {
-		return null;
+		return create(flux)
+				.thenRequest(1L).expectNext(SKYLER)
+				.thenRequest(1L).expectNext(JESSE)
+				.thenCancel();
 	}
 
 //========================================================================================
 
-	// TODO Return a Flux with all users stored in the repository that prints automatically logs for all Reactive Streams signals
+	// Return a Flux with all users stored in the repository that prints automatically logs for all Reactive Streams signals
 	Flux<User> fluxWithLog() {
-		return null;
+		return repository.findAll().log();
 	}
 
 //========================================================================================
 
-	// TODO Return a Flux with all users stored in the repository that prints "Starring:" on subscribe, "firstname lastname" for all values and "The end!" on complete
+	// Return a Flux with all users stored in the repository that prints "Starring:" on subscribe, "firstname lastname" for all values and "The end!" on complete
 	Flux<User> fluxWithDoOnPrintln() {
-		return null;
+		return repository.findAll()
+				.doOnSubscribe(s -> System.out.println("Starring"))
+				.doOnNext(u -> System.out.println(u.getFirstname() + " " + u.getLastname()))
+				.doOnComplete(() -> System.out.println("The end!"));
 	}
-
 }
