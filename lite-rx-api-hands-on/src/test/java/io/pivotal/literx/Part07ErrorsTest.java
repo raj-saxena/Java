@@ -23,6 +23,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import static io.pivotal.literx.domain.User.*;
+
 /**
  * Learn how to deal with errors.
  *
@@ -39,12 +41,12 @@ public class Part07ErrorsTest {
 	public void monoWithValueInsteadOfError() {
 		Mono<User> mono = workshop.betterCallSaulForBogusMono(Mono.error(new IllegalStateException()));
 		StepVerifier.create(mono)
-				.expectNext(User.SAUL)
+				.expectNext(SAUL)
 				.verifyComplete();
 
-		mono = workshop.betterCallSaulForBogusMono(Mono.just(User.SKYLER));
+		mono = workshop.betterCallSaulForBogusMono(Mono.just(SKYLER));
 		StepVerifier.create(mono)
-				.expectNext(User.SKYLER)
+				.expectNext(SKYLER)
 				.verifyComplete();
 	}
 
@@ -54,12 +56,12 @@ public class Part07ErrorsTest {
 	public void fluxWithValueInsteadOfError() {
 		Flux<User> flux = workshop.betterCallSaulAndJesseForBogusFlux(Flux.error(new IllegalStateException()));
 		StepVerifier.create(flux)
-				.expectNext(User.SAUL, User.JESSE)
+				.expectNext(SAUL, JESSE)
 				.verifyComplete();
 
-		flux = workshop.betterCallSaulAndJesseForBogusFlux(Flux.just(User.SKYLER, User.WALTER));
+		flux = workshop.betterCallSaulAndJesseForBogusFlux(Flux.just(SKYLER, WALTER));
 		StepVerifier.create(flux)
-				.expectNext(User.SKYLER, User.WALTER)
+				.expectNext(SKYLER, WALTER)
 				.verifyComplete();
 	}
 
@@ -67,7 +69,7 @@ public class Part07ErrorsTest {
 
 	@Test
 	public void handleCheckedExceptions() {
-		Flux<User> flux = workshop.capitalizeMany(Flux.just(User.SAUL, User.JESSE));
+		Flux<User> flux = workshop.capitalizeMany(Flux.just(SAUL, JESSE));
 
 		StepVerifier.create(flux)
 				.verifyError(Part07Errors.GetOutOfHereException.class);
