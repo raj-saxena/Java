@@ -16,8 +16,6 @@
 
 package io.pivotal.literx;
 
-import java.util.concurrent.CompletableFuture;
-
 import io.pivotal.literx.domain.User;
 import io.pivotal.literx.repository.ReactiveRepository;
 import io.pivotal.literx.repository.ReactiveUserRepository;
@@ -29,6 +27,8 @@ import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Learn how to adapt from/to RxJava 2 Observable/Single/Flowable and Java 8+ CompletableFuture.
@@ -44,7 +44,7 @@ import reactor.test.StepVerifier;
 public class Part09AdaptTest {
 
 	Part09Adapt workshop = new Part09Adapt();
-	ReactiveRepository<User> repository = new ReactiveUserRepository();
+	private ReactiveRepository<User> repository = new ReactiveUserRepository();
 
 //========================================================================================
 

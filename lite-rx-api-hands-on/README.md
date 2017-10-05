@@ -20,5 +20,20 @@ To do this Hands-on, you just have to:
 The solution is available in the `complete` branch to compare, when you have finished, with what you have done.
 
 A Kotlin version that takes advantage of [reactor-kotlin-extensions](https://github.com/reactor/reactor-kotlin-extensions) is available [here](https://github.com/eddumelendez/reactor-kotlin-workshop).
- 
+
 More information available on [Reactor website](http://projectreactor.io).
+
+___
+### Notes
+* [Reactor](http://projectreactor.io) has
+    - Flux 
+    - Mono
+* Java 9 has [Flux](http://docs.oracle.com/javase/9/docs/api/index.html?java/util/concurrent/Flow.html) that works with
+    - Flow.Processor<T, R> 
+    - Flow.Publisher<T> 
+    - Flow.Subscriber<T> 
+    - Flow.Subscription
+* Similarly, [RxJava](https://github.com/ReactiveX/RxJava) has
+    - Observable
+    - Single
+    - Flowable 
