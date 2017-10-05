@@ -28,7 +28,7 @@ ___
 * [Reactor](http://projectreactor.io) has
     - Flux 
     - Mono
-* Java 9 has [Flux](http://docs.oracle.com/javase/9/docs/api/index.html?java/util/concurrent/Flow.html) that works with
+* Java 9 has [Flow](http://docs.oracle.com/javase/9/docs/api/index.html?java/util/concurrent/Flow.html) that works with
     - Flow.Processor<T, R> 
     - Flow.Publisher<T> 
     - Flow.Subscriber<T> 

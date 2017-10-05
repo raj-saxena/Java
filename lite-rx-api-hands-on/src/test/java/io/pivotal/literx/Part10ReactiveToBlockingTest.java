@@ -1,13 +1,13 @@
 package io.pivotal.literx;
 
-import java.util.Iterator;
-
 import io.pivotal.literx.domain.User;
 import io.pivotal.literx.repository.ReactiveRepository;
 import io.pivotal.literx.repository.ReactiveUserRepository;
 import org.junit.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Iterator;
 
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -20,7 +20,7 @@ import static org.junit.Assert.assertFalse;
 public class Part10ReactiveToBlockingTest {
 
 	Part10ReactiveToBlocking workshop = new Part10ReactiveToBlocking();
-	ReactiveRepository<User> repository = new ReactiveUserRepository();
+	private ReactiveRepository<User> repository = new ReactiveUserRepository();
 
 //========================================================================================
 
