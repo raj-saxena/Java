@@ -25,6 +25,11 @@ More information available on [Reactor website](http://projectreactor.io).
 
 ___
 ### Notes
+* Understanding reactive - https://spring.io/blog/2016/06/13/notes-on-reactive-programming-part-ii-writing-some-code
+    - Generators/ Publisher/ Flux/ Observables
+    - Consumers/ Subscribers/ 
+    - you can configure the subscriptions to be handled in a background thread using `Flux.subscribeOn():`  
+
 * [Reactor](http://projectreactor.io) has
     - Flux 
     - Mono
@@ -37,3 +42,4 @@ ___
     - Observable
     - Single
     - Flowable 
+
